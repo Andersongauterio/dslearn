@@ -18,9 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_offer")
 public class Offer implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,7 +27,7 @@ public class Offer implements Serializable {
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant startMoment;
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant endMoment;
 	
@@ -39,10 +38,14 @@ public class Offer implements Serializable {
 	@OneToMany(mappedBy = "offer")
 	private List<Resource> resources = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "offer")
+	private List<Topic> topics = new ArrayList<>();	
+	
 	public Offer() {
 	}
 
 	public Offer(Long id, String edition, Instant startMoment, Instant endMoment, Course course) {
+		super();
 		this.id = id;
 		this.edition = edition;
 		this.startMoment = startMoment;
@@ -81,7 +84,7 @@ public class Offer implements Serializable {
 	public void setEndMoment(Instant endMoment) {
 		this.endMoment = endMoment;
 	}
-	
+
 	public Course getCourse() {
 		return course;
 	}
@@ -92,6 +95,10 @@ public class Offer implements Serializable {
 	
 	public List<Resource> getResources() {
 		return resources;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
 	}
 
 	@Override
@@ -118,9 +125,4 @@ public class Offer implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-
 }

@@ -14,9 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_course")
 public class Course implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,10 +27,10 @@ public class Course implements Serializable {
 	private List<Offer> offers = new ArrayList<>();
 	
 	public Course() {
-		
 	}
 
 	public Course(Long id, String name, String imgUri, String imgGrayUri) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.imgUri = imgUri;
@@ -98,5 +97,4 @@ public class Course implements Serializable {
 			return false;
 		return true;
 	}
-	
 }
